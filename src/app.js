@@ -25,19 +25,26 @@ const removeAll = () => {
   renderTemplate();
 };
 
+const onMakeDecision = () => {
+  console.log("make decision");
+  const dex = Math.floor(Math.random() * app.options.length);
+  //   console.log(app.options[dex]);
+  alert(app.options[dex]);
+};
+
 const renderTemplate = () => {
   const template = (
     <div>
       <h1>{app.title}!</h1>
       {app.subtitle && <p>{app.subtitle}</p>}
       <p>{app.options.length ? "Here are your options:" : "No options"}</p>
-      <p>{app.options.length}</p>
+      <button onClick={onMakeDecision}>What should I do?</button>
       <button onClick={removeAll}>Remove All</button>
 
       <ol>
-        {app.options.map((option, index) => {
-          return <li key={index}>{option}</li>;
-        })}
+        {app.options.map((option, index) => (
+          <li key={index}>{option}</li>
+        ))}
       </ol>
 
       <form onSubmit={onFormSubmit}>

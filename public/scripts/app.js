@@ -27,6 +27,13 @@ var removeAll = function removeAll() {
   renderTemplate();
 };
 
+var onMakeDecision = function onMakeDecision() {
+  console.log("make decision");
+  var dex = Math.floor(Math.random() * app.options.length);
+  //   console.log(app.options[dex]);
+  alert(app.options[dex]);
+};
+
 var renderTemplate = function renderTemplate() {
   var template = React.createElement(
     "div",
@@ -48,9 +55,9 @@ var renderTemplate = function renderTemplate() {
       app.options.length ? "Here are your options:" : "No options"
     ),
     React.createElement(
-      "p",
-      null,
-      app.options.length
+      "button",
+      { onClick: onMakeDecision },
+      "What should I do?"
     ),
     React.createElement(
       "button",
