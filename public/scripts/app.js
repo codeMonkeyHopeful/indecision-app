@@ -19,7 +19,7 @@ var render = function render() {
     React.createElement(
       "button",
       { onClick: toggleDisplay },
-      "Show Detials"
+      visibility ? "Hide Details" : "Show Details"
     ),
     visibility && React.createElement(
       "p",

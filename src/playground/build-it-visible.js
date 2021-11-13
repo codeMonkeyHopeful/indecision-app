@@ -9,7 +9,9 @@ const render = () => {
   const template = (
     <div>
       <h1>Visibility Toggle</h1>
-      <button onClick={toggleDisplay}>Show Detials</button>
+      <button onClick={toggleDisplay}>
+        {visibility ? "Hide Details" : "Show Details"}
+      </button>
       {visibility && <p>This is some text that will hide and unhide</p>}
     </div>
   );
