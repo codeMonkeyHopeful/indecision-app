@@ -14,10 +14,17 @@ var onFormSubmit = function onFormSubmit(e) {
 
   if (option) {
     app.options.push(option);
-    console.log(app.options);
+
     e.target.elements.option.value = "";
     renderTemplate();
   }
+};
+
+var numbers = [1, 2, 3];
+
+var removeAll = function removeAll() {
+  app.options = [];
+  renderTemplate();
 };
 
 var renderTemplate = function renderTemplate() {
@@ -46,12 +53,17 @@ var renderTemplate = function renderTemplate() {
       app.options.length
     ),
     React.createElement(
-      "ul",
+      "button",
+      { onClick: removeAll },
+      "Remove All"
+    ),
+    React.createElement(
+      "ol",
       null,
-      app.options.map(function (option, dex) {
+      app.options.map(function (option, index) {
         return React.createElement(
           "li",
-          { key: dex },
+          { key: index },
           option
         );
       })

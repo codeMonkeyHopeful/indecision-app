@@ -12,10 +12,17 @@ const onFormSubmit = (e) => {
 
   if (option) {
     app.options.push(option);
-    console.log(app.options);
+
     e.target.elements.option.value = "";
     renderTemplate();
   }
+};
+
+const numbers = [1, 2, 3];
+
+const removeAll = () => {
+  app.options = [];
+  renderTemplate();
 };
 
 const renderTemplate = () => {
@@ -25,11 +32,13 @@ const renderTemplate = () => {
       {app.subtitle && <p>{app.subtitle}</p>}
       <p>{app.options.length ? "Here are your options:" : "No options"}</p>
       <p>{app.options.length}</p>
-      <ul>
-        {app.options.map((option, dex) => (
-          <li key={dex}>{option}</li>
-        ))}
-      </ul>
+      <button onClick={removeAll}>Remove All</button>
+
+      <ol>
+        {app.options.map((option, index) => {
+          return <li key={index}>{option}</li>;
+        })}
+      </ol>
 
       <form onSubmit={onFormSubmit}>
         <input type="text" name="option"></input>
