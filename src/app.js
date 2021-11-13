@@ -34,4 +34,4 @@ const userTemplate = (
 
 const app = document.getElementById("app");
 
-ReactDom.render(template, app);
+ReactDOM.render(template, app);
