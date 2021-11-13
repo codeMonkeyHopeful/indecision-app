@@ -38,7 +38,9 @@ const renderTemplate = () => {
       <h1>{app.title}!</h1>
       {app.subtitle && <p>{app.subtitle}</p>}
       <p>{app.options.length ? "Here are your options:" : "No options"}</p>
-      <button onClick={onMakeDecision}>What should I do?</button>
+      <button onClick={onMakeDecision} disabled={app.options.length}>
+        What should I do?
+      </button>
       <button onClick={removeAll}>Remove All</button>
 
       <ol>

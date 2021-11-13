@@ -56,7 +56,7 @@ var renderTemplate = function renderTemplate() {
     ),
     React.createElement(
       "button",
-      { onClick: onMakeDecision },
+      { onClick: onMakeDecision, disabled: app.options.length },
       "What should I do?"
     ),
     React.createElement(
