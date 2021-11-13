@@ -1,7 +1,7 @@
-let toggleIndicator = false;
+let visibility = false;
 
 const toggleDisplay = () => {
-  toggleIndicator = !toggleIndicator;
+  visibility = !visibility;
   render();
 };
 
@@ -10,12 +10,11 @@ const render = () => {
     <div>
       <h1>Visibility Toggle</h1>
       <button onClick={toggleDisplay}>Show Detials</button>
-      {toggleIndicator && <p>This is some text that will hide and unhide</p>}
+      {visibility && <p>This is some text that will hide and unhide</p>}
     </div>
   );
-  const root = document.getElementById("app");
 
-  ReactDOM.render(template, root);
+  ReactDOM.render(template, document.getElementById("app"));
 };
 
 render();

@@ -1,9 +1,9 @@
 "use strict";
 
-var toggleIndicator = false;
+var visibility = false;
 
 var toggleDisplay = function toggleDisplay() {
-  toggleIndicator = !toggleIndicator;
+  visibility = !visibility;
   render();
 };
 
@@ -21,15 +21,14 @@ var render = function render() {
       { onClick: toggleDisplay },
       "Show Detials"
     ),
-    toggleIndicator && React.createElement(
+    visibility && React.createElement(
       "p",
       null,
       "This is some text that will hide and unhide"
     )
   );
-  var root = document.getElementById("app");
 
-  ReactDOM.render(template, root);
+  ReactDOM.render(template, document.getElementById("app"));
 };
 
 render();
