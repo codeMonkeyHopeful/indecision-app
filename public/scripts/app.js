@@ -7,6 +7,17 @@ var task = {
   subtitle: "Take for walk",
   options: ["One", "Two"]
 };
+
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
+  var option = e.target.elements.option.value;
+
+  console.log(option);
+  if (option) {
+    task.options.push(option);
+    e.target.elements.option.value = "";
+  }
+};
 var template = React.createElement(
   "div",
   null,
@@ -25,6 +36,16 @@ var template = React.createElement(
     "p",
     null,
     task.options.length ? "Here are your options:" : "No options"
+  ),
+  React.createElement(
+    "form",
+    { onSubmit: onFormSubmit },
+    React.createElement("input", { type: "text", name: "option" }),
+    React.createElement(
+      "button",
+      { type: "submit" },
+      "Add Option"
+    )
   )
 );
 
