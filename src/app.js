@@ -1,51 +1,46 @@
 console.log("working");
 
-const task = {
-  title: "Kiwi",
-  subtitle: "Take for walk",
-  options: ["One", "Two"],
+const app = {
+  title: "Indecision App",
+  subtitle: "Let the program take you on a journey",
+  options: [],
 };
 
 const onFormSubmit = (e) => {
   e.preventDefault();
   const option = e.target.elements.option.value;
 
-  console.log(option);
   if (option) {
-    task.options.push(option);
+    app.options.push(option);
+    console.log(app.options);
     e.target.elements.option.value = "";
+    renderTemplate();
   }
 };
-const template = (
-  <div>
-    <h1>{task.title}!</h1>
-    {task.subtitle && <p>{task.subtitle}</p>}
-    <p>{task.options.length ? "Here are your options:" : "No options"}</p>
-    <form onSubmit={onFormSubmit}>
-      <input type="text" name="option"></input>
-      <button type="submit">Add Option</button>
-    </form>
-  </div>
-);
 
-const user = {
-  name: "Ryan",
-  age: 36,
-  city: "Seattle",
+const renderTemplate = () => {
+  const template = (
+    <div>
+      <h1>{app.title}!</h1>
+      {app.subtitle && <p>{app.subtitle}</p>}
+      <p>{app.options.length ? "Here are your options:" : "No options"}</p>
+      <p>{app.options.length}</p>
+      <ul>
+        {app.options.map((option, dex) => (
+          <li key={dex}>{option}</li>
+        ))}
+      </ul>
+
+      <form onSubmit={onFormSubmit}>
+        <input type="text" name="option"></input>
+        <button type="submit">Add Option</button>
+      </form>
+    </div>
+  );
+
+  const root = document.getElementById("app");
+
+  ReactDOM.render(template, root);
 };
 
-const getLocation = (location) => {
-  return location ? <p>Location: {location}</p> : undefined;
-};
-
-const userTemplate = (
-  <div>
-    <h1>{user.name}</h1>
-    {user.age && user.age >= 18 && <p>Age: {user.age}</p>}
-    {getLocation(user.city)}
-  </div>
-);
-
-const app = document.getElementById("app");
-
-ReactDOM.render(template, app);
+renderTemplate();
