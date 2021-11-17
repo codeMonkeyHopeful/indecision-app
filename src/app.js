@@ -1,10 +1,13 @@
 class IndecisionApp extends React.Component {
   render() {
+    const title = "Indecision";
+    const subTitle = "Let the computer take control!!";
+    const options = [1, 2, 3];
     return (
       <div>
-        <Header />
+        <Header title={title} subTitle={subTitle} />
         <Action />
-        <Options />
+        <Options options={options} />
         <AddOption />
       </div>
     );
@@ -15,44 +18,62 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        <h1>Indecision</h1>
-        <h2>Let the computer take control</h2>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.subTitle}</h2>
       </div>
     );
   }
 }
 
 class Action extends React.Component {
+  handleClick() {
+    console.log("handleClickAction");
+  }
   render() {
     return (
       <div>
-        <button>What Should I Do?</button>
+        <button onClick={this.handleClick}>What Should I Do?</button>
       </div>
     );
   }
 }
 
 class Options extends React.Component {
+  handleRemoveAll() {
+    console.log("Remove All");
+  }
   render() {
     return (
-      <ol>
-        <Option />
-        <Option />
-      </ol>
+      <div>
+        <button onClick={this.handleRemoveAll}>Remove All</button>
+        <ol>
+          {this.props.options.map((option, index) => {
+            return <Option option={option} key={index} />;
+          })}
+        </ol>
+      </div>
     );
   }
 }
 
 class Option extends React.Component {
   render() {
-    return <li>Option component here</li>;
+    return <li>{this.props.option}</li>;
   }
 }
 class AddOption extends React.Component {
+  handleAddOption(e) {
+    e.preventDefault();
+    if (e.target.elements.option.value.trim()) {
+      console.log(e.target.elements.option.value);
+      e.target.elements.option.value = "";
+    }
+  }
   render() {
     return (
-      <form>
-        <div>I am the form</div>
+      <form onSubmit={this.handleAddOption}>
+        <input type="text" name="option"></input>
+        <button>Add Option</button>
       </form>
     );
   }
