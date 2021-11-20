@@ -6,10 +6,29 @@ class Counter extends React.Component {
     this.handleReset = this.handleReset.bind(this);
 
     this.state = {
-      count: props.count,
+      count: 0,
     };
   }
 
+  componentDidMount() {
+    //grab from local - convert and check
+    try {
+      const count = JSON.parse(localStorage.getItem("count"));
+      if (!isNaN(parseInt(count))) {
+        this.setState(() => ({ count }));
+      }
+    } catch (e) {}
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    //save to local - convert and check!
+    try {
+      const count = this.state.count;
+      if (!isNaN(parseInt(count))) {
+        localStorage.setItem("count", count);
+      }
+    } catch (e) {}
+  }
   handleAddOne() {
     // console.log("increase");
     this.setState({ count: this.state.count + 1 });
@@ -37,42 +56,4 @@ class Counter extends React.Component {
   }
 }
 
-Counter.defaultProps = {
-  count: 0,
-};
-
 ReactDOM.render(<Counter />, document.getElementById("app"));
-
-// let count = 0;
-
-// const increment = () => {
-//   count += 1;
-//   console.log("increment", count);
-//   renderCounterApp();
-// };
-
-// const decrement = () => {
-//   count -= 1;
-//   console.log("decrement");
-//   renderCounterApp();
-// };
-
-// const reset = () => {
-//   count = 0;
-//   console.log("reset");
-//   renderCounterApp();
-// };
-
-// const renderCounterApp = () => {
-//   const templateTwo = (
-//     <div>
-//       <h1>Count: {count}</h1>
-//       <button onClick={increment}>Increment</button>
-//       <button onClick={decrement}>Decrement</button>
-//       <button onClick={reset}>Reset</button>
-//     </div>
-//   );
-//   ReactDOM.render(templateTwo, app);
-// };
-
-// renderCounterApp();
