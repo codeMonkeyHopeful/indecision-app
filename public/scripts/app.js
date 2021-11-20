@@ -59,7 +59,6 @@ var IndecisionApp = function (_React$Component) {
           options: prevState.options.concat(option)
         };
       });
-      "";
     }
   }, {
     key: "handlePick",

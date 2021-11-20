@@ -33,7 +33,6 @@ class IndecisionApp extends React.Component {
     this.setState((prevState) => ({
       options: prevState.options.concat(option),
     }));
-    ``;
   }
   handlePick() {
     const integer = Math.floor(Math.random() * this.state.options.length);
