@@ -44,9 +44,11 @@ var Counter = function (_React$Component) {
     value: function componentDidUpdate(prevProps, prevState) {
       //save to local - convert and check!
       try {
-        var count = this.state.count;
-        if (!isNaN(parseInt(count))) {
-          localStorage.setItem("count", count);
+        if (prevState.count !== this.state.count) {
+          var count = this.state.count;
+          if (!isNaN(parseInt(count))) {
+            localStorage.setItem("count", count);
+          }
         }
       } catch (e) {}
     }
